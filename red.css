@@ -7,7 +7,7 @@
 }
 
 body {
-    background: linear-gradient(135deg, #0f1a12, #0b2e13);
+    background: linear-gradient(135deg, #1a0f0f, #2e0b0b);
     color: #f1f1f1;
     padding: 20px;
 }
@@ -23,7 +23,7 @@ header {
 
 h1 {
     font-size: 3rem;
-    background: linear-gradient(90deg, #2e8b57, #00c853);
+    background: linear-gradient(90deg, #ff4d4d, #ff0000);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -31,23 +31,23 @@ h1 {
 h2 {
     margin-top: 15px;
     font-weight: 300;
-    color: #a7f3d0;
+    color: #ff9a9a;
 }
 
 .btn {
     margin-top: 30px;
     padding: 12px 28px;
-    border: 2px solid #2e8b57;
+    border: 2px solid #ff3b3b;
     border-radius: 30px;
     text-decoration: none;
-    color: #2e8b57;
+    color: #ff3b3b;
     transition: 0.3s ease;
 }
 
 .btn:hover {
-    background: #2e8b57;
+    background: #ff3b3b;
     color: white;
-    box-shadow: 0 0 15px #2e8b57;
+    box-shadow: 0 0 15px #ff3b3b;
 }
 
 section {
@@ -57,7 +57,7 @@ section {
 }
 
 .card {
-    background: #1a2e1f;
+    background: #2e1a1a;
     padding: 25px;
     margin: 20px 0;
     border-radius: 15px;
@@ -66,7 +66,7 @@ section {
 
 .card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 10px 25px rgba(46,139,87,0.4);
+    box-shadow: 0 10px 25px rgba(255, 59, 59, 0.4);
 }
 
 ul {
@@ -76,16 +76,16 @@ ul {
 
 li {
     margin: 8px 0;
-    color: #bbf7d0;
+    color: #ffb3b3;
 }
 
 footer {
     text-align: center;
     padding: 20px;
-    background: #071a0c;
-    color: #6ee7b7;
+    background: #1a0707;
+    color: #ff7b7b;
 }
 
 a {
-    color: #6ee7b7;
+    color: #ff7b7b;
 }
