@@ -1,5 +1,66 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    async function loadData() {
+      try {
+        const response = await fetch('./data.json');
+        if (!response.ok) throw new Error('Ошибка загрузки JSON');
+
+        const data = await response.json();
+     
+        const skillsList = document.getElementById('skills-list');
+        data.skills.forEach(skill => {
+            const li = document.createElement('li');
+            li.textContent = skill;
+            skillsList.appendChild(li);
+        });
+
+     
+        const eduList = document.getElementById('education-list');
+        data.education.forEach(item => {
+            const li = document.createElement('li');
+            li.innerHTML = item;
+            eduList.appendChild(li);
+        });
+
+        const charList = document.getElementById('characteristics-list');
+        data.characteristics.forEach(item => {
+          const li = document.createElement('li');
+          li.textContent = item;
+          charList.appendChild(li);
+        });
+
+
+        const projList = document.getElementById('projects-list');
+        data.projects.forEach(project => {
+          const li = document.createElement('li');
+          li.innerHTML = `<strong>${project.title}:</strong> ${project.description}`;
+          projList.appendChild(li);
+        });
+
+    
+        const expList = document.getElementById('experience-list');
+
+        const mainLi = document.createElement('li');
+        mainLi.innerHTML = `<strong>${data.experience.role}</strong> – ${data.experience.type}`;
+
+        const subUl = document.createElement('ul');
+
+        data.experience.details.forEach(detail => {
+          const subLi = document.createElement('li');
+          subLi.textContent = detail;
+          subUl.appendChild(subLi);
+        });
+
+        mainLi.appendChild(subUl);
+        expList.appendChild(mainLi);
+
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    loadData();
+
     const form = document.getElementById("contactForm");
 
     form.addEventListener("submit", function (e) {
