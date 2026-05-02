@@ -1,6 +1,6 @@
-
 document.addEventListener("DOMContentLoaded", function () {
-   async function loadData() {
+
+    async function loadData() {
       try {
         const response = await fetch('./data.json');
         if (!response.ok) throw new Error('Error when fetching data.json');
@@ -75,22 +75,17 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("Wszystkie pola są wymagane!");
             return;
         }
-        if (/\d/.test(firstName) || /\d/.test(lastName)) {
-            alert("Imię i nazwisko nie mogą zawierać cyfr!");
-            return;
-        }
+
         if (!email.includes("@") || !email.includes(".")) {
             alert("Niepoprawny email!");
             return;
         }
 
         alert("Wysłano pomyślnie!");
-        
     });
- 
+    loadItems();
 
 });
-
 
 function toggleTheme() {
     const body = document.body;
@@ -109,3 +104,55 @@ function toggleContent() {
     });
 }
 
+
+function getItems() {
+    return JSON.parse(localStorage.getItem("items")) || [];
+}
+
+function saveItems(items) {
+    localStorage.setItem("items", JSON.stringify(items));
+}
+
+function loadItems() {
+    const items = getItems();
+    const list = document.getElementById("itemsList");
+    list.innerHTML = "";
+
+    items.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Usuń";
+        deleteBtn.className = "btn";
+        deleteBtn.style.marginLeft = "10px";
+
+        deleteBtn.onclick = () => deleteItem(index);
+
+        li.appendChild(deleteBtn);
+        list.appendChild(li);
+    });
+}
+
+function addItem() {
+    const input = document.getElementById("itemInput");
+    const value = input.value.trim();
+
+    if (value === "") return;
+
+    const items = getItems();
+    items.push(value);
+
+    saveItems(items);
+    input.value = "";
+
+    loadItems();
+}
+
+function deleteItem(index) {
+    const items = getItems();
+    items.splice(index, 1);
+
+    saveItems(items);
+    loadItems();
+}
