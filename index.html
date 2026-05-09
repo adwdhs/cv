@@ -11,6 +11,68 @@
 </head>
 
 <body class="theme-red"> 
+    <script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBRk4GuxtIcr7b7k9FAVwNvBeiQ4Aax6p8",
+  authDomain: "uni-project-1c173.firebaseapp.com",
+  projectId: "uni-project-1c173",
+  storageBucket: "uni-project-1c173.firebasestorage.app",
+  messagingSenderId: "888575175747",
+  appId: "1:888575175747:web:a955f3a5177e498032b8f6",
+  measurementId: "G-HJ7N105NBZ"
+};
+
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+
+const form = document.getElementById("contactForm");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const firstName = document.getElementById("firstName").value;
+  const lastName = document.getElementById("lastName").value;
+  const email = document.getElementById("email").value;
+   const message = document.getElementById("message").value;
+
+  try {
+
+    await addDoc(collection(db, "forms"), {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      message: message,
+      createdAt: serverTimestamp()
+    });
+
+    alert("Saved to Firestore!");
+
+    form.reset();
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert("Error saving data");
+
+  }
+
+});
+
+</script>
 <header>
     <h1>Andrii Harkusha</h1>
     <h2>Student ID: 66741</h2>
